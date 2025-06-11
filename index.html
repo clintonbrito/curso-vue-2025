@@ -17,9 +17,20 @@
             
             <section v class="items">
                 <h4>Pick Your Items</h4>
-                <div v-for="product in products" class="product">
+                <!-- <div
+                    v-for="product in products"
+                    class="product"
+                    @click="product.active = !product.active"
+                    :class="product.active ? 'selected' : ''" // ternário de um jeito
+                > -->
+                <div
+                    v-for="product in products"
+                    class="product"
+                    @click="product.active = !product.active"
+                    :class="{ selected : product.active }"
+                >
                     <div class="photo">
-                        <img :src="product.photo">
+                        <img v-bind:src="product.photo">
                     </div>
                     <div class="description">
                         <span class="name">{{ product.name }}</span>
