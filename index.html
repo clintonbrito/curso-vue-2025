@@ -8,59 +8,48 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
-        <title>Band Members</title>
+        <title>To-Do List</title>
     </head>
 
     <body>
         
         <main id="app">
             
-            
+            <section class="todo-list">
+                
+                
+                <h3>Lista de Tarefas</h3>
+                
+                <div class="all-todos">
+                    <div class="single-todo done">
+                        <p>Aprender HTML, CSS e Javascript</p>
+                    </div>
+                    <div class="single-todo done">
+                        <p>Aprender o básico de Vue JS</p>
+                    </div>
+                    <div class="single-todo">
+                        <p>Completar o desafio de Vue JS com excelência</p>
+                    </div>
 
-            <h1>
-                Membros da Banda
-            </h1>
+                </div>
 
-            <table>
-                <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Sobrenome</th>
-                    <th>Instrumento</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr v-for="member in members">
-                    <td>{{member.fname}}</td>
-                    <td>{{member.lname}}</td>
-                    <td>{{member.instrument}}</td>
-                </tr>
-                </tbody>
-            </table>
+                <button class="clear">Limpar tudo</button>
 
-            <section class="add-more">
-                <p>Adicionar membros</p>
-                <form>
-                    <label for="fname">Nome:</label><br>
-                    <input type="text" id="fname" name="fname" v-model="newMember.fname"><br>
-                    
-                    <label for="lname">Sobrenome:</label><br>
-                    <input type="text" id="lname" name="lname" v-model="newMember.lname"><br>
+                <input type="text" placeholder="Escreva uma nova tarefa...">
+                <button class="add">Adicionar</button>
 
-                    <label for="instrument">Instrumento:</label><br>
-                    <select name="instrument" id="instrument" v-model="newMember.instrument">
-                        <option value="Baixo">Baixo</option>
-                        <option value="Guitarra">Guitarra</option>
-                        <option value="Violão">Violão</option>
-                        <option value="Bateria">Bateria</option>
-                        </select>
-                        <br><br>
-                    <input type="button" value="Adicionar" @click="addMember()">
-                </form> 
+                <div class="instructions">
+                    Instruções:
+                    <ul>
+                        <li>Clique no texto da tarefa para alternar entre feita / não feita</li>
+                        <li>Use o botão limpar tudo para remover todas as tarefas</li>
+                        <li>Use o input para adicionar novas tarefas</li>
+                    </ul>
+                </div>
             </section>
 
         </main>
-        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="https://unpkg.com/vue@next"></script>
         <script src="scripts.js"></script>
     </body>
 
