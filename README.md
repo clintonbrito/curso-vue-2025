@@ -1,3 +1,24 @@
-# Curso sobre Vue.js
+# Project 4 - Quiz Game
 
-Código desenvolvido ao longo do curso de Vue.js. Em cada `branch` encontra-se o código referente a cada aula/projeto desenvolvido.
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
