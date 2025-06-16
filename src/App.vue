@@ -7,17 +7,29 @@
   
       <template v-for="(answer, index) in this.answers" v-bind:key="index">
         <input
+          :disabled="this.answerSubmitted"
           type="radio"
           name="options"
-          value="answer"
+          :value="answer"
+          v-model="this.chosenAnswer"
           />
         <label v-html="answer"></label><br />
       </template>
 
+      <button v-if="!this.answerSubmitted" @click="this.submitAnswer()" class="send" type="button">Send</button>
+      <button v-if="this.answerSubmitted" @click="this.getNewQuestion()" class="send" type="button">Next question</button>
+
+      <section v-if="this.answerSubmitted" class="result">
+        <h4 v-if="this.chosenAnswer == this.correctAnswer"
+        v-html="'&#9989; Parabéns, a resposta ' + this.correctAnswer + ' está correta.'">
+        </h4>
+        <h4 v-else
+        v-html="'&#10060; Que pena, a resposta está errada. A resposta correta é ' + this.correctAnswer + '.'">
+        </h4>
+      </section>
+
     </template>
 
-
-    <button class="send" type="button">Send</button>
   </div>
 </template>
 
@@ -31,6 +43,8 @@ export default {
       question: [],
       incorrectAnswers: [],
       correctAnswer: [],
+      chosenAnswer: null,
+      answerSubmitted: false
     }
   },
   computed: {
@@ -41,7 +55,29 @@ export default {
     }
   },
   created() {
-    this.axios
+    this.getNewQuestion();
+  },
+  methods: {
+    submitAnswer() {
+      if(!this.chosenAnswer) {
+        alert("Escolha uma das opções.")
+      } else {
+        this.answerSubmitted = true;
+        if(this.chosenAnswer == this.correctAnswer) {
+          console.log("Parabéns, você acertou!")
+        } else {
+          console.log("Resposta errada.")
+        }
+      }
+    },
+
+    getNewQuestion() {
+
+      this.chosenAnswer = null,
+      this.answerSubmitted = false,
+      this.question = null
+
+      this.axios
       .get('https://opentdb.com/api.php?amount=1&category=11')
       .then((response) => {
         this.question = response.data.results[0].question;
@@ -49,6 +85,8 @@ export default {
         this.correctAnswer = response.data.results[0].correct_answer;
         console.log(response.data.results[0]);
       })
+
+    }
   }
 }
 
